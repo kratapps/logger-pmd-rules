@@ -5,6 +5,7 @@ start-build-env:
 
 build:
 	docker exec -it "${docker_name}" mvn package
+	# scanner rule add in package.json postinstall script? 
 	sf scanner rule add --language apex --path target/logger-pmd-rules-1.0.0.jar
 
 preview-build:
@@ -13,6 +14,7 @@ preview-build:
 test:
 	mkdir -p out
 	sf scanner run --target src/test/force-app/ --engine pmd --pmdconfig src/main/resources/rulesets/apex/logger.xml --json > out/test_results.json
+	bash scripts/test.sh
 	
 assert:
 	bash scripts/test.sh
