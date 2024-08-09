@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         name="logger"
+         xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 https://pmd.sourceforge.io/ruleset_2_0_0.xsd">
+    <description>Logger Rules</description>
+    <rule
+            name="LoggerClassMatchesClassNames"
+            language="apex"
+            class="com.kratapps.pmd.LoggerClassMatchesClassName"
+            message="The argument to ok.Logger.getLogger should match the class name."
+    >
+        <description>This rule ensures that the class passed as an argument to `ok.Logger.getLogger(MyClass.class)`
+            matches the class in which the logger is being called.
+        </description>
+        <priority>3</priority>
+    </rule>
+</ruleset>
