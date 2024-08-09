@@ -1,0 +1,25 @@
+{
+    "plugins": ["prettier-plugin-java"],
+    "tabWidth": 4,
+    "useTabs": false,
+    "singleQuote": false,
+    "trailingComma": "none",
+    "overrides": [
+        {
+            "files": "src/**/*.java",
+            "options": {
+                "parser": "java",
+                "printWidth": 140,
+                "tabWidth": 4
+            }
+        },
+        {
+            "files": "src/**/*.json",
+            "options": {
+                "printWidth": 140,
+                "tabWidth": 2,
+                "singleQuote": true
+            }
+        }
+    ]
+}

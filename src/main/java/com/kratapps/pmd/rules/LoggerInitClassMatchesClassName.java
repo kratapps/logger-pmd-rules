@@ -1,12 +1,11 @@
-package com.kratapps.pmd;
+package com.kratapps.pmd.rules;
 
+import java.util.List;
+import java.util.stream.Collectors;
 import net.sourceforge.pmd.lang.apex.ast.ASTClassRefExpression;
 import net.sourceforge.pmd.lang.apex.ast.ASTMethodCallExpression;
 import net.sourceforge.pmd.lang.apex.ast.ASTUserClass;
 import net.sourceforge.pmd.lang.apex.rule.AbstractApexRule;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class LoggerInitClassMatchesClassName extends AbstractApexRule {
 
@@ -15,16 +14,22 @@ public class LoggerInitClassMatchesClassName extends AbstractApexRule {
         // Find `ok.Logger.getLogger(...)` method calls.
         getLoggerInitCalls(node).forEach(initCall -> {
             // Find first class ref expressions.
-            initCall.findDescendantsOfType(ASTClassRefExpression.class).stream()
-                    // Check the input param of `ok.Logger.getLogger(...)` matches the class name.
-                    .filter(it -> !initClassMatchesClassName(it, node))
-                    .forEach(it -> asCtx(data).addViolation(it));
+            initCall
+                .findDescendantsOfType(ASTClassRefExpression.class)
+                .stream()
+                // Check the input param of `ok.Logger.getLogger(...)` matches the class name.
+                .filter(it -> !initClassMatchesClassName(it, node))
+                .forEach(it -> asCtx(data).addViolation(it));
         });
         return super.visit(node, data);
     }
 
     private List<ASTMethodCallExpression> getLoggerInitCalls(ASTUserClass node) {
-        return node.findDescendantsOfType(ASTMethodCallExpression.class).stream().filter(this::isLoggerGetLoggerCall).collect(Collectors.toList());
+        return node
+            .findDescendantsOfType(ASTMethodCallExpression.class)
+            .stream()
+            .filter(this::isLoggerGetLoggerCall)
+            .collect(Collectors.toList());
     }
 
     private boolean isLoggerGetLoggerCall(ASTMethodCallExpression methodCall) {
@@ -38,6 +43,3 @@ public class LoggerInitClassMatchesClassName extends AbstractApexRule {
         return classRefName.equalsIgnoreCase(cls.getImage());
     }
 }
-
-
-
