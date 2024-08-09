@@ -15,4 +15,8 @@ public class ClassNoViolations {
             ok.Logger.publish();
         }
     }
+
+    public static void doSomethingElse(Id recordId2) {
+        doSomethingElse();
+    }
 }

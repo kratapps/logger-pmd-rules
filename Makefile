@@ -21,3 +21,9 @@ assert:
 
 run-pure:
 	sf scanner run --target ~/projects/pure/sfdc-legacy/src/classes/ --engine pmd  --pmdconfig src/main/resources/rulesets/apex/logger.xml
+
+run-jar:
+	"${JAVA_HOME}"/bin/java -jar target/logger-pmd-rules-1.0.0-jar-with-dependencies.jar \
+        -R src/main/resources/category/apex/logger.xml \
+        -d src/test/force-app/classes/ \
+        -f json

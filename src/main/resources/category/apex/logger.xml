@@ -5,12 +5,22 @@
          xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 https://pmd.sourceforge.io/ruleset_2_0_0.xsd">
     <description>Logger Rules</description>
     <rule
-            name="LoggerClassMatchesClassNames"
+            name="AuraEnabledMethodShouldPublishLogsInFinallyBlock"
             language="apex"
-            class="com.kratapps.pmd.LoggerClassMatchesClassName"
+            class="com.kratapps.pmd.AuraEnabledMethodShouldPublishLogsInFinallyBlock"
+            message="TODO"
+    >
+        <description>Ensure AuraEnabled methods have `ok.Logger.publish()` in finally block.
+        </description>
+        <priority>3</priority>
+    </rule>
+    <rule
+            name="LoggerInitClassMatchesClassName"
+            language="apex"
+            class="com.kratapps.pmd.LoggerInitClassMatchesClassName"
             message="The argument to ok.Logger.getLogger should match the class name."
     >
-        <description>This rule ensures that the class passed as an argument to `ok.Logger.getLogger(MyClass.class)`
+        <description>Ensure that the class passed as an argument to `ok.Logger.getLogger()`
             matches the class in which the logger is being called.
         </description>
         <priority>3</priority>
