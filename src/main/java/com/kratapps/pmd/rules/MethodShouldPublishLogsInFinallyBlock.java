@@ -1,5 +1,6 @@
 package com.kratapps.pmd.rules;
 
+import com.kratapps.pmd.util.AstUtil;
 import net.sourceforge.pmd.lang.apex.ast.ASTAnnotation;
 import net.sourceforge.pmd.lang.apex.ast.ASTBlockStatement;
 import net.sourceforge.pmd.lang.apex.ast.ASTMethod;
@@ -33,25 +34,9 @@ public abstract class MethodShouldPublishLogsInFinallyBlock extends AbstractApex
         if (finallyBlock == null) {
             // Missing finally block.
             asCtx(data).addViolation(block);
-        } else if (!hasLoggerPublishStatement(finallyBlock)) {
+        } else if (!AstUtil.hasStatement(finallyBlock, "ok.Logger.publish();")) {
             // Missing `ok.Logger.publish();` in finally block.
             asCtx(data).addViolation(finallyBlock);
         }
-    }
-
-    protected boolean hasAnnotation(ASTMethod method, String annotation) {
-        return method.findDescendantsOfType(ASTAnnotation.class).stream().anyMatch(it -> isAnnotation(it, annotation));
-    }
-
-    private boolean isAnnotation(ASTAnnotation annotation, String annotationName) {
-        return annotation.getImage().equalsIgnoreCase(annotationName);
-    }
-
-    private boolean hasLoggerPublishStatement(ASTBlockStatement block) {
-        return block
-            .getNode()
-            .getStatements()
-            .stream()
-            .anyMatch(statement -> statement.toString().trim().equalsIgnoreCase("ok.Logger.publish();"));
     }
 }
