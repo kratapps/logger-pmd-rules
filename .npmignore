@@ -1,0 +1,11 @@
+.husky/
+.idea/
+node_modules/
+out/
+scripts/
+Makefile
+src/
+target/
+.prettierignore                                                                           
+.prettierrc                                                                               
+pom.xml                                                                                   
