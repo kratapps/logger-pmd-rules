@@ -9,3 +9,4 @@ target/
 .prettierignore                                                                           
 .prettierrc                                                                               
 pom.xml                                                                                   
+*.tgz

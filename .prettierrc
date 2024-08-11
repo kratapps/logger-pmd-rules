@@ -20,6 +20,14 @@
                 "tabWidth": 2,
                 "singleQuote": true
             }
+        },
+        {
+            "files": "**/*.js",
+            "options": {
+                "printWidth": 140,
+                "tabWidth": 4,
+                "singleQuote": true
+            }
         }
     ]
 }
