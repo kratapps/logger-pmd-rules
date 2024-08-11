@@ -25,5 +25,8 @@
         "src/**/*.{java}": [
             "prettier --write"
         ]
+    },
+    "publishConfig": {
+        "access": "public"
     }
 }
