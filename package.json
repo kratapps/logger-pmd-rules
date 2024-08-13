@@ -19,7 +19,7 @@
         "prettier-plugin-java": "^2.6.4"
     },
     "lint-staged": {
-        "src/**/*.{java}": [
+        "src/**/*.java": [
             "prettier --write"
         ]
     },
