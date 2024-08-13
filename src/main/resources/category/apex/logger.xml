@@ -8,7 +8,8 @@
             name="AuraEnabledMethodShouldPublishLogsInFinallyBlock"
             language="apex"
             class="com.kratapps.pmd.rules.AuraEnabledMethodShouldPublishLogsInFinallyBlock"
-            message="TODO"
+            message="AuraEnabled annotated methods should publish logs in finally block."
+            externalInfoUrl="https://docs.kratapps.com/one-logger/docs/pmd/rule/AuraEnabledMethodShouldPublishLogsInFinallyBlock"
     >
         <description>Ensure AuraEnabled methods have `ok.Logger.publish()` in finally block.
         </description>
@@ -19,6 +20,7 @@
             language="apex"
             class="com.kratapps.pmd.rules.LoggerInitClassMatchesClassName"
             message="The argument to ok.Logger.getLogger should match the class name."
+            externalInfoUrl="https://docs.kratapps.com/one-logger/docs/pmd/rule/LoggerInitClassMatchesClassName"
     >
         <description>Ensure that the class passed as an argument to `ok.Logger.getLogger()`
             matches the class in which the logger is being called.
