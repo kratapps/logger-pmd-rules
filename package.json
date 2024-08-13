@@ -1,15 +1,12 @@
 {
     "name": "@kratapps/logger-pmd-rules",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "repository": {
         "type": "git",
         "url": "https://github.com/kratapps/logger-pmd-rules.git"
     },
-    "bin": {
-        "logger-pmd-rules": "./lib/cli.js"
-    },
     "scripts": {
-        "test": "make test",
+        "prepublishOnly": "make test",
         "pre-commit": "lint-staged",
         "install-husky": "husky install",
         "prettier-all": "prettier --write src/**/*.java",
@@ -22,7 +19,7 @@
         "prettier-plugin-java": "^2.6.4"
     },
     "lint-staged": {
-        "src/**/*.{java}": [
+        "src/**/*.java": [
             "prettier --write"
         ]
     },
