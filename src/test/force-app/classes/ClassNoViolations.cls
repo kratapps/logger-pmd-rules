@@ -1,5 +1,5 @@
 public class ClassNoViolations {
-    private static ok.Logger logger = ok.Logger.getLogger(classNoViolations.Class);
+    private static ok.Logger logger = ok.Logger.getLogger(classNoVIOLATIONS.CLASS);
     
     public static ok.Logger getLogger() {
         return null;

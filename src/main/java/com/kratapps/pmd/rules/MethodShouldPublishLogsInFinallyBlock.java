@@ -19,7 +19,7 @@ public abstract class MethodShouldPublishLogsInFinallyBlock extends AbstractApex
     public abstract boolean shouldBeChecked(ASTMethod method);
 
     private void ensureLogsPublishedInFinallyBlock(ASTMethod method, Object data) {
-        ASTTryCatchFinallyBlockStatement tryCatchBlock = method.getFirstDescendantOfType(ASTTryCatchFinallyBlockStatement.class);
+        ASTTryCatchFinallyBlockStatement tryCatchBlock = method.descendants(ASTTryCatchFinallyBlockStatement.class).first();
         if (tryCatchBlock == null) {
             // Missing try-catch block.
             asCtx(data).addViolation(method);
@@ -33,7 +33,7 @@ public abstract class MethodShouldPublishLogsInFinallyBlock extends AbstractApex
         if (finallyBlock == null) {
             // Missing finally block.
             asCtx(data).addViolation(block);
-        } else if (!AstUtil.hasStatement(finallyBlock, "ok.Logger.publish();")) {
+        } else if (!AstUtil.hasMethodCallExpression(finallyBlock, "ok.Logger.publish")) {
             // Missing `ok.Logger.publish();` in finally block.
             asCtx(data).addViolation(finallyBlock);
         }

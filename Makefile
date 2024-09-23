@@ -1,11 +1,12 @@
 docker_name=logger-pmd-rules-build
 
 start-build-env:
-	docker run --name "${docker_name}" -d -v "$(shell pwd)":/app -w /app maven:3.8.1-jdk-8 tail -f /dev/null
+	docker run --name "${docker_name}" --rm -v "$(shell pwd)":/app -w /app maven:3.8.6-openjdk-11 tail -f /dev/null
 
 build:
 	docker exec -it "${docker_name}" mvn package
 	mkdir -p lib
+	rm -r lib/*
 	cp target/logger-pmd-rules-1.0.0.jar lib/ruleset.jar
 	cp -r src/main/resources/* lib
 
